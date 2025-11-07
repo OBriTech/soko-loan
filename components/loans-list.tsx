@@ -67,7 +67,7 @@ export default function LoansList() {
                 <div key={loan._id}>
                   <Card
                     className="p-4 bg-card border-border cursor-pointer hover:border-primary/50 transition"
-                    onClick={() => setExpandedLoan(isExpanded ? null : loan._id)}
+                    onClick={() => setExpandedLoan(isExpanded ? null : (loan._id ?? null))}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
@@ -77,13 +77,12 @@ export default function LoansList() {
                       <div className="text-right">
                         <p className="text-sm font-medium text-foreground">KSh {loan.amount}</p>
                         <p
-                          className={`text-xs font-medium ${
-                            status.isPaid
-                              ? "text-primary"
-                              : status.isOverdue
-                                ? "text-destructive"
-                                : "text-muted-foreground"
-                          }`}
+                          className={`text-xs font-medium ${status.isPaid
+                            ? "text-primary"
+                            : status.isOverdue
+                              ? "text-destructive"
+                              : "text-muted-foreground"
+                            }`}
                         >
                           {status.isPaid ? "Paid" : status.isOverdue ? "Overdue" : "Active"}
                         </p>

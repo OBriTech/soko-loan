@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: false,
-  },
-};
+  // Remove turbo, rely on Webpack build
+}
 
-module.exports = nextConfig;
+export default nextConfig

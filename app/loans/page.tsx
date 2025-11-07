@@ -106,13 +106,12 @@ export default function LoansPage() {
                         <div className="flex items-center gap-2 mb-2">
                           <h3 className="text-lg font-semibold text-foreground">{loan.memberName}</h3>
                           <span
-                            className={`text-xs font-medium px-2 py-1 rounded-full ${
-                              loan.status === "paid"
-                                ? "bg-primary/20 text-primary"
-                                : loan.status === "active"
-                                  ? "bg-accent/20 text-accent"
-                                  : "bg-destructive/20 text-destructive"
-                            }`}
+                            className={`text-xs font-medium px-2 py-1 rounded-full ${loan.status === "paid"
+                              ? "bg-primary/20 text-primary"
+                              : loan.status === "active"
+                                ? "bg-accent/20 text-accent"
+                                : "bg-destructive/20 text-destructive"
+                              }`}
                           >
                             {loan.status === "paid" ? "Paid" : loan.status === "active" ? "Active" : "Defaulted"}
                           </span>
@@ -172,8 +171,8 @@ export default function LoansPage() {
                             // Find if this day has been paid
                             const dayPayments = loanPayments.filter(
                               (p) =>
-                                new Date(p.date) >= new Date(day.dueDate) &&
-                                new Date(p.date) < new Date(day.dueDate).getTime() + 86400000,
+                                new Date(p.date).getTime() >= new Date(day.dueDate).getTime() &&
+                                new Date(p.date).getTime() < new Date(day.dueDate).getTime() + 86400000
                             )
                             const dayTotal = dayPayments.reduce((sum, p) => sum + p.amount, 0)
                             const isPaid = dayTotal >= day.amount
@@ -190,9 +189,8 @@ export default function LoansPage() {
                                 <div className="text-right">
                                   <p className="text-foreground font-medium">KSh {day.amount.toLocaleString()}</p>
                                   <p
-                                    className={`text-xs font-medium ${
-                                      isPaid ? "text-primary" : "text-muted-foreground"
-                                    }`}
+                                    className={`text-xs font-medium ${isPaid ? "text-primary" : "text-muted-foreground"
+                                      }`}
                                   >
                                     {isPaid ? "Paid" : "Pending"}
                                   </p>
