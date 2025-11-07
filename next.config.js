@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove turbo, rely on Webpack build
-}
+  experimental: {
+    turbo: false, // disable turbopack completely
+  },
+  webpack: (config) => {
+    return config;
+  },
+};
 
-export default nextConfig
+export default nextConfig;
